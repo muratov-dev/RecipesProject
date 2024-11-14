@@ -4,7 +4,7 @@ data class RecipeModel(
     val category: String,
     val cookTime: String,
     val description: String,
-    val id: Int,
+    val id: Long,
     val image: String,
     val ingredients: List<IngredientModel>,
     val steps: List<StepModel>,

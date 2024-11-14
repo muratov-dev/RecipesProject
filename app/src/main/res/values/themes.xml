@@ -6,4 +6,9 @@
     </style>
 
     <style name="Theme.RecipesProject" parent="Base.Theme.RecipesProject"/>
+
+    <style name="ImageViewStyle">
+        <item name="cornerSize">8dp</item>
+        <item name="android:backgroundTint">@drawable/item_image_background</item>
+    </style>
 </resources>
