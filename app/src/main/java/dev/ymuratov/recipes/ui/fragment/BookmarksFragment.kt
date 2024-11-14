@@ -14,6 +14,7 @@ import dev.ymuratov.recipes.databinding.FragmentBookmarksBinding
 import dev.ymuratov.recipes.ui.MainState
 import dev.ymuratov.recipes.ui.MainViewModel
 import dev.ymuratov.recipes.ui.adapter.RecipesAdapter
+import dev.ymuratov.recipes.ui.fragment.BookmarksFragmentDirections.actionBookmarksFragmentToRecipeFragment
 import kotlinx.coroutines.launch
 
 class BookmarksFragment : Fragment() {
@@ -47,6 +48,10 @@ class BookmarksFragment : Fragment() {
     private fun FragmentBookmarksBinding.initViews() {
         recipesAdapter.apply {
             onBookmarkClickListener = { recipeId, isBooked -> viewModel.updateRecipe(recipeId, isBooked) }
+            onItemClickListener = { recipe ->
+                viewModel.selectRecipe(recipe)
+                findNavController().navigate(actionBookmarksFragmentToRecipeFragment())
+            }
         }
         bookmarksBackButton.setOnClickListener { findNavController().popBackStack() }
         bookmarksRecyclerView.adapter = recipesAdapter

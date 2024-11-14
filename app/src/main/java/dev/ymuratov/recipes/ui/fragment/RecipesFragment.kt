@@ -11,11 +11,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import dev.passerby.recipes.ui.adapter.SectionsAdapter
 import dev.ymuratov.recipes.databinding.FragmentRecipesBinding
 import dev.ymuratov.recipes.ui.MainState
 import dev.ymuratov.recipes.ui.MainViewModel
+import dev.ymuratov.recipes.ui.adapter.SectionsAdapter
 import dev.ymuratov.recipes.ui.fragment.RecipesFragmentDirections.actionRecipesFragmentToBookmarksFragment
+import dev.ymuratov.recipes.ui.fragment.RecipesFragmentDirections.actionRecipesFragmentToRecipeFragment
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -51,6 +52,10 @@ class RecipesFragment : Fragment() {
     private fun FragmentRecipesBinding.initViews() {
         sectionsAdapter.apply {
             onBookmarkClickListener = { recipeId, isBooked -> viewModel.updateRecipe(recipeId, isBooked) }
+            onItemClickListener = { recipe ->
+                viewModel.selectRecipe(recipe)
+                findNavController().navigate(actionRecipesFragmentToRecipeFragment())
+            }
         }
         recipesBookmarksButton.setOnClickListener {
             findNavController().navigate(actionRecipesFragmentToBookmarksFragment())

@@ -33,6 +33,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun updateRecipe(recipeId: Long, isBooked: Boolean) = viewModelScope.launch {
         repository.updateRecipe(recipeId, isBooked)
+        uiState.value.selectedRecipe?.let {
+            if (it.id != recipeId) return@let
+            it.isBooked = !isBooked
+        }
+    }
+
+    fun selectRecipe(recipe: RecipeModel) = viewModelScope.launch {
+        _uiState.update { it.copy(selectedRecipe = recipe) }
     }
 
     private fun getBookmarks() = viewModelScope.launch {
@@ -60,5 +68,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 }
 
 data class MainState(
-    val sections: List<SectionModel> = emptyList(), val bookmarks: List<RecipeModel> = emptyList()
+    val sections: List<SectionModel> = emptyList(),
+    val bookmarks: List<RecipeModel> = emptyList(),
+    val selectedRecipe: RecipeModel? = null
 )

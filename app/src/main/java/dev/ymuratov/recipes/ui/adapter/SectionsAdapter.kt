@@ -1,4 +1,4 @@
-package dev.passerby.recipes.ui.adapter
+package dev.ymuratov.recipes.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.ymuratov.recipes.databinding.ItemSectionBinding
 import dev.ymuratov.recipes.domain.model.RecipeModel
 import dev.ymuratov.recipes.domain.model.SectionModel
-import dev.ymuratov.recipes.ui.adapter.RecipesAdapter
 
 class SectionsAdapter : ListAdapter<SectionModel, CategoryViewHolder>(CategoryDiffCallBack()) {
 

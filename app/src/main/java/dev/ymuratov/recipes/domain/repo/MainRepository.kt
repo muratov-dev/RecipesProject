@@ -9,5 +9,7 @@ interface MainRepository {
 
     fun getBookmarks(): Flow<List<RecipeModel>>
 
+    fun getRecipe(recipeId: Long): Flow<RecipeModel>
+
     suspend fun updateRecipe(recipeId: Long, isBooked: Boolean)
 }

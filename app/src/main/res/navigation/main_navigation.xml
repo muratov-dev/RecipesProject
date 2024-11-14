@@ -13,10 +13,22 @@
         <action
             android:id="@+id/action_recipesFragment_to_bookmarksFragment"
             app:destination="@id/bookmarksFragment"/>
+        <action
+            android:id="@+id/action_recipesFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment"/>
     </fragment>
     <fragment
         android:id="@+id/bookmarksFragment"
         android:name="dev.ymuratov.recipes.ui.fragment.BookmarksFragment"
         android:label="fragment_bookmarks"
-        tools:layout="@layout/fragment_bookmarks"/>
+        tools:layout="@layout/fragment_bookmarks">
+        <action
+            android:id="@+id/action_bookmarksFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="dev.ymuratov.recipes.ui.fragment.RecipeFragment"
+        android:label="fragment_recipe"
+        tools:layout="@layout/fragment_recipe"/>
 </navigation>
