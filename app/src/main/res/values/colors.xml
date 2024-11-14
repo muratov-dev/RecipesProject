@@ -6,4 +6,5 @@
     <color name="backgroundCard">#F9F9F9</color>
     <color name="textMain">#1D1B20</color>
     <color name="textSecondary">#AFAFAF</color>
+    <color name="accent">#1D1B20</color>
 </resources>

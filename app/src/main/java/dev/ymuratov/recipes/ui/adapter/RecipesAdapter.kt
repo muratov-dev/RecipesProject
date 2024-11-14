@@ -30,8 +30,6 @@ class RecipesAdapter : ListAdapter<RecipeModel, RecipeViewHolder>(RecipeDiffCall
                 setImageResource(if (item.isBooked) R.drawable.ic_star_checked else R.drawable.ic_star_unchecked)
                 setOnClickListener {
                     onBookmarkClickListener?.invoke(item.id, item.isBooked)
-//                    item.isBooked = !item.isBooked
-                    notifyItemChanged(position)
                 }
             }
             root.setOnClickListener { onItemClickListener?.invoke(item) }

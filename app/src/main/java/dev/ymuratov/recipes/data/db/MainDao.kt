@@ -13,6 +13,12 @@ interface MainDao {
     @Query("select * from recipes where title like :filter")
     fun getRecipes(filter: String): Flow<List<RecipeEntity>>
 
+    @Query("select * from recipes where isBooked = 1")
+    fun getBookmarks(): Flow<List<RecipeEntity>>
+
+    @Query("update recipes set isBooked = :isBooked where id = :id")
+    suspend fun updateRecipe(id: Long, isBooked: Boolean)
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(recipes: List<RecipeEntity>)
 }

@@ -21,16 +21,22 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: MainRepository = MainRepositoryImpl(application)
 
     init {
-        viewModelScope.launch {
-            repository.getRecipes("").collectLatest { recipes ->
-                _uiState.update { it.copy(sections = getSections(recipes)) }
-            }
-        }
+        getRecipes("")
     }
 
     fun getRecipes(searchQuery: String) = viewModelScope.launch {
         repository.getRecipes(searchQuery).collectLatest { recipes ->
             _uiState.update { it.copy(sections = getSections(recipes)) }
+        }
+    }
+
+    fun updateRecipe(recipeId: Long, isBooked: Boolean) = viewModelScope.launch {
+        repository.updateRecipe(recipeId, isBooked)
+    }
+
+    private fun getBookmarks() = viewModelScope.launch {
+        repository.getBookmarks().collectLatest { bookmarks ->
+            _uiState.update { it.copy(bookmarks = bookmarks) }
         }
     }
 
@@ -53,5 +59,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 }
 
 data class MainState(
-    val sections: List<SectionModel> = emptyList()
+    val sections: List<SectionModel> = emptyList(),
+    val bookmarks: List<RecipeModel> = emptyList()
 )

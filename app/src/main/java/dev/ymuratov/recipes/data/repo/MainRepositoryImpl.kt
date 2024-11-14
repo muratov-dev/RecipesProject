@@ -30,4 +30,12 @@ class MainRepositoryImpl(application: Application) : MainRepository {
     override fun getRecipes(searchQuery: String): Flow<List<RecipeModel>> {
         return dao.getRecipes("%$searchQuery%").map { list -> list.map { it.toDomain() } }.distinctUntilChanged()
     }
+
+    override fun getBookmarks(): Flow<List<RecipeModel>> {
+        return dao.getBookmarks().map { list -> list.map { it.toDomain() } }.distinctUntilChanged()
+    }
+
+    override suspend fun updateRecipe(recipeId: Long, isBooked: Boolean) {
+        dao.updateRecipe(recipeId, isBooked)
+    }
 }

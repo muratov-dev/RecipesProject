@@ -47,6 +47,9 @@ class RecipesFragment : Fragment() {
     }
 
     private fun FragmentRecipesBinding.initViews() {
+        sectionsAdapter.apply {
+            onBookmarkClickListener = { recipeId, isBooked -> viewModel.updateRecipe(recipeId, !isBooked) }
+        }
         recipesBookmarksButton.setOnClickListener {
 //            findNavController().navigate(actionRecipesFragmentToBookmarksFragment())
         }
