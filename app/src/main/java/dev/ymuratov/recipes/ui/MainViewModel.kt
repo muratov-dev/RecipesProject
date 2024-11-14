@@ -22,6 +22,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         getRecipes("")
+        getBookmarks()
     }
 
     fun getRecipes(searchQuery: String) = viewModelScope.launch {
@@ -59,6 +60,5 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 }
 
 data class MainState(
-    val sections: List<SectionModel> = emptyList(),
-    val bookmarks: List<RecipeModel> = emptyList()
+    val sections: List<SectionModel> = emptyList(), val bookmarks: List<RecipeModel> = emptyList()
 )

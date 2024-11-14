@@ -10,10 +10,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import dev.passerby.recipes.ui.adapter.SectionsAdapter
 import dev.ymuratov.recipes.databinding.FragmentRecipesBinding
 import dev.ymuratov.recipes.ui.MainState
 import dev.ymuratov.recipes.ui.MainViewModel
+import dev.ymuratov.recipes.ui.fragment.RecipesFragmentDirections.actionRecipesFragmentToBookmarksFragment
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -48,10 +50,10 @@ class RecipesFragment : Fragment() {
 
     private fun FragmentRecipesBinding.initViews() {
         sectionsAdapter.apply {
-            onBookmarkClickListener = { recipeId, isBooked -> viewModel.updateRecipe(recipeId, !isBooked) }
+            onBookmarkClickListener = { recipeId, isBooked -> viewModel.updateRecipe(recipeId, isBooked) }
         }
         recipesBookmarksButton.setOnClickListener {
-//            findNavController().navigate(actionRecipesFragmentToBookmarksFragment())
+            findNavController().navigate(actionRecipesFragmentToBookmarksFragment())
         }
         recipesSearchEditText.doOnTextChanged { text, _, _, _ ->
             val searchText = text.toString().trim().lowercase()

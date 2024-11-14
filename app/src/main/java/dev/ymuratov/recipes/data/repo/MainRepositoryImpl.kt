@@ -36,6 +36,6 @@ class MainRepositoryImpl(application: Application) : MainRepository {
     }
 
     override suspend fun updateRecipe(recipeId: Long, isBooked: Boolean) {
-        dao.updateRecipe(recipeId, isBooked)
+        dao.updateRecipe(recipeId, !isBooked)
     }
 }
